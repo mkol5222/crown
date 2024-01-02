@@ -25,7 +25,7 @@
             "source_application_security_group_ids": []
           },
           {
-            "name": "f4ad5e85-ec75-4321-8854-ed7eb611f61d_rg-demo101_demo101_102_Inbound",
+            "name": "102_Udp_rule",
             "description": "",
             "priority": 102,
             "direction": "Inbound",
