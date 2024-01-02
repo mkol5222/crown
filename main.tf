@@ -34,3 +34,22 @@ resource "azurerm_resource_group" "example" {
   name     = "example-cpnsg"
   location = "West Europe"
 }
+
+resource "azurerm_network_security_group" "example" {
+  name                = "example-cpnsg"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+
+  security_rule {
+    name                       = "test123"
+    priority                   = 100
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "0-100"
+    destination_port_ranges     = ["80","443-443"]
+    source_address_prefix      = "*"
+    destination_address_prefix = "*"
+  }
+
+}

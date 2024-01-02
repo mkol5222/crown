@@ -10,7 +10,7 @@ export class CheckPointClient {
     ) { }
 
     public async login() {
-        console.log("Logging in to Check Point...", this.cpserver, this.cptenant, this.cpapikey);
+        console.log("Logging in to Check Point...");
 
         const cpCreds = this.cpapikey ? {
             "api-key": this.cpapikey
