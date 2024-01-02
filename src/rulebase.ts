@@ -20,4 +20,22 @@ export class AccessRulebase {
     public getRules() {
         return this.rulebase['rulebase'];
     }
+
+    public getFlatRules() {
+        const flatRules = [];
+        for (const rule of this.rulebase['rulebase']) {
+            
+
+            if (rule.type === 'access-rule') {
+                flatRules.push(rule);
+            }
+            if (rule.type === 'access-section') {
+                const sectionRules = rule['rulebase'];
+                for (const sectionRule of sectionRules) {
+                    flatRules.push(sectionRule);
+                }
+            }
+        }
+        return flatRules;
+    }
 }

@@ -4,6 +4,7 @@ import { CheckPointClient } from "./src/checkpoint.ts";
 import { AccessRulebase } from "./src/rulebase.ts";
 import  resolveObjectToIp  from "./src/objectip.ts";
 import resolveService from "./src/services.ts";
+import resolveRuleLocationInNsg from "./src/ruleloc.ts";
 
 console.log("Hello World!")
 
@@ -46,6 +47,11 @@ async function main() {
             console.log(resolveService(service));
     }
     //console.log(services);
+
+    const flatRulebase = rulebase.getFlatRules();
+    for (const rule of flatRulebase) {
+        console.log(rule.uid, rule.name, rule.type, resolveRuleLocationInNsg(rule, rulebase));
+    }
 }
 
 await main();

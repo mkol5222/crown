@@ -1,16 +1,27 @@
 
 function resolveServiceTcp(obj) {
-    console.log(obj);
+
+    const port = obj['port'];
+    if (typeof port === 'string') {
+        return { proto: 'tcp', port };
+    }
     return null;
 }
 
 function resolveServiceUdp(obj) {
-    console.log(obj);
+    const port = obj['port'];
+    if (typeof port === 'string') {
+        return { proto: 'udp', port };
+    }
     return null;
 }
 
 function resolveServiceGroup(obj) {
-    console.log(obj);
+    const members = obj['members'];
+    if (members) {
+        const memberServices = members.map((member) => resolveService(member));
+        return memberServices;
+    }
     return null;
 }
 
