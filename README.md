@@ -90,4 +90,6 @@ gc nsg.tf.json | ConvertFrom-Json | % { $_.resource.azurerm_network_security_gro
 
 # list rules
 gc nsg.tf.json | ConvertFrom-Json | % { $_.resource.azurerm_network_security_group."example-nsg-2".security_rule} | ft *
+
+gc nsg.tf.json | ConvertFrom-Json | % { $_.resource.azurerm_network_security_group."example-nsg-2".security_rule} | fl
 ```
