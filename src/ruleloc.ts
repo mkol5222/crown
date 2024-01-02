@@ -34,6 +34,7 @@ function getDataFromName(name) {
     return data;
 }
 
+// return install target data and NSG location
 function resolveRuleLocationInNsg(rule, rulebase) {
 
    // console.log('rule', rule);
@@ -45,6 +46,7 @@ function resolveRuleLocationInNsg(rule, rulebase) {
 
     const installOn = rule['install-on'];
 
+    const targets = [];
     for (const installOnObj of installOn) {
         const obj = rulebase.getObjectByUid(installOnObj);
         if (isNsgInstallTarget(obj)) {
@@ -57,7 +59,7 @@ function resolveRuleLocationInNsg(rule, rulebase) {
             const targetName = getDataFromName(obj.name);
     
 
-            console.log({
+            targets.push({
                 rulePriority,
                 ruleDirection,
                 rgName,
@@ -67,6 +69,8 @@ function resolveRuleLocationInNsg(rule, rulebase) {
             })
         }
     }
+
+    return targets;
  }
 
  export default resolveRuleLocationInNsg;
