@@ -1,6 +1,6 @@
 # Crown
 
-## micro-segmentation rulesets managed from Check Point SmartConsole
+micro-segmentation rulesets managed from Check Point SmartConsole
 
 ### Description
 
@@ -34,4 +34,15 @@ subscription_id="f4a---use-your-own-SP"
 
 ```shell
 deno task start
+```
+
+### Explore NSGs with aztfexport tool
+
+```powershell
+# IMPORTANT!
+mkdir tmp; cd tmp
+# discover your own NSG in Azure Portal and replace ID below
+aztfexport res /subscriptions/f4ad5e85-ec75-4321-8854-ed7eb611f61d/resourceGroups/rg-test-nsg101/providers/Microsoft.Network/networkSecurityGroups/Default
+# look at it
+code terraform.tfstate
 ```
