@@ -25,11 +25,15 @@ function resolveGroupToIp(obj) {
     return null;
 
 }
+function resolveCpmiAnyObject(obj) {
+    return '*';
+}
 
 const resolverMap = {
     'host': resolveHostToIp,
     'network': resolveNetworkToIp,
     'group': resolveGroupToIp,
+    'CpmiAnyObject': resolveCpmiAnyObject
 }
 
 function resolveObjectToIp(obj) {
@@ -37,6 +41,7 @@ function resolveObjectToIp(obj) {
     if (resolver) {
         return resolver(obj);
     }
+    console.error('No resolver for object type', obj.type);
     return null;
 }
 

@@ -25,11 +25,15 @@ function resolveServiceGroup(obj) {
     return null;
 }
 
+function resolveCpmiAnyObject(obj) {
+    return { proto: '*', port: '*'};
+}
 
 const resolverMap = {
     'service-tcp': resolveServiceTcp,
     'service-udp': resolveServiceUdp    ,
     'service-group': resolveServiceGroup,
+    'CpmiAnyObject': resolveCpmiAnyObject
 }
 
 function resolveService(obj) {
@@ -37,6 +41,7 @@ function resolveService(obj) {
     if (resolver) {
         return resolver(obj);
     }
+    console.error('No resolver for service type', obj.type);
     return null;
 }
 

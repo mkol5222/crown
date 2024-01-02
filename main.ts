@@ -50,8 +50,9 @@ async function main() {
 
     const flatRulebase = rulebase.getFlatRules();
     for (const rule of flatRulebase) {
-        console.log(rule.uid, rule.name, rule.type, resolveRuleLocationInNsg(rule, rulebase));
-
+        // if (!rule.enabled) continue;
+        console.log(rule.enabled, rule.uid, rule.name, rule.type, resolveRuleLocationInNsg(rule, rulebase));
+        
         const ruleData = rulebase.getRuleNsgData(rule.uid);
         console.log(ruleData);
     }
