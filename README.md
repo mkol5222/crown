@@ -1,0 +1,37 @@
+# Crown
+
+## micro-segmentation rulesets managed from Check Point SmartConsole
+
+### Description
+
+Edit policy in Check Point SmartConsole, enforce as Azure NSGs or Kubernetes Pod Network Policies.
+
+### Requirements
+
+- Deno - JavaScript/TypeScript runtime - [install](https://docs.deno.com/runtime/manual/getting_started/installation)
+- Azure Service Principal - [create](https://gist.github.com/mkol5222/2e48e283c96fd6958583b4c828e09624)
+
+### Setup
+
+Configure CP Security Management access using .env similar to example:
+
+```shell
+CPSERVER="yourown-za8upq50.maas.checkpoint.com"
+CPTENANT="ccae851f-tttt-4fcf-a0da-c50788f1dde3"
+CPAPIKEY="useyourownkey"
+```
+
+Configure Azure access using SP in terraform.tfvars similar to example:
+
+```shell
+client_secret="ucJ---use-your-own-SP"
+client_id="451---use-your-own-SP"
+tenant_id="016---use-your-own-SP"
+subscription_id="f4a---use-your-own-SP"
+```
+
+### Usage
+
+```shell
+deno task start
+```
