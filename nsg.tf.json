@@ -7,7 +7,7 @@
         "resource_group_name": "${azurerm_resource_group.example.name}",
         "security_rule": [
           {
-            "name": "f4ad5e85-ec75-4321-8854-ed7eb611f61d_rg-demo101_demo101_100_Inbound",
+            "name": "101_tcp_r",
             "description": "",
             "priority": 100,
             "direction": "Inbound",
@@ -43,7 +43,8 @@
             "destination_address_prefix": "",
             "destination_address_prefixes": [
               "10.2.0.1",
-              "10.0.0.0/16"
+              "10.0.0.0/16",
+              "172.16.2.0/24"
             ],
             "destination_application_security_group_ids": [],
             "source_application_security_group_ids": []

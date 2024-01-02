@@ -66,3 +66,17 @@ $nsgs[0].instances[0].attributes
 # rules
 $nsgs[0].instances[0].attributes.security_rule
 ```
+
+### Install Policy to NSG
+
+Rulebase in SmartConsole:
+![SmartConsole rulebase](./img/rulebase_s1c.png)
+
+Converted to NSG using:
+```powershell
+deno task start | Set-Content .\nsg.tf.json
+
+terraform apply
+```
+
+![NSG rulebase](./img/rulebase_nsg.png)
