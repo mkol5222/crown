@@ -60,8 +60,8 @@ function resolveRuleLocationInNsg(rule, rulebase) {
     
 
             targets.push({
-                rulePriority,
-                ruleDirection,
+                priority: Number(rulePriority),
+                direction: ruleDirection,
                 rgName,
                 subId,
                 nsgName,

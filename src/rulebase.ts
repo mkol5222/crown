@@ -1,3 +1,5 @@
+import resolveRuleLocationInNsg from "./ruleloc.ts";
+
 export class AccessRulebase {
 
     constructor(
@@ -37,5 +39,35 @@ export class AccessRulebase {
             }
         }
         return flatRules;
+    }
+
+    // Allow / Deny
+    public getRuleNsgDataAccess(ruleObject: any) {
+        
+        const actionObj = this.getObjectByUid(ruleObject.action);
+        // console.log(ruleObject.action, actionObj.name);
+
+        if (actionObj.name === 'Accept') {
+            return 'Allow';
+        }
+        if (actionObj.name === 'Drop') {
+            return 'Deny';
+        }
+        return 'Deny';
+    }
+
+    public getRuleNsgData(ruleUid) {
+        const rule = this.getFlatRules().find((rule) => rule.uid === ruleUid);
+
+        const installOn = resolveRuleLocationInNsg(rule, this);
+
+        const ruleData = [];
+        for (const installTarget of installOn) {
+         
+         ruleData.push({
+            access: this.getRuleNsgDataAccess(rule),   
+            ...installTarget });
+        }
+        return ruleData;
     }
 }
