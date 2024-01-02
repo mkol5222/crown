@@ -80,3 +80,14 @@ terraform apply
 ```
 
 ![NSG rulebase](./img/rulebase_nsg.png)
+
+
+### Review generated rulebase with Powershell
+
+```powershell
+# see NSG
+gc nsg.tf.json | ConvertFrom-Json | % { $_.resource.azurerm_network_security_group."example-nsg-2"} | fl
+
+# list rules
+gc nsg.tf.json | ConvertFrom-Json | % { $_.resource.azurerm_network_security_group."example-nsg-2".security_rule} | ft *
+```
