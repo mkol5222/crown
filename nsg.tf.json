@@ -1,76 +1,76 @@
 {
-    "resource": {
-      "azurerm_network_security_group": {
-        "example-nsg-2": {
-          "name": "example-cpnsg2",
-          "location": "${azurerm_resource_group.example.location}",
-          "resource_group_name": "${azurerm_resource_group.example.name}",
-          "security_rule": [
-            {
-              "name": "f4ad5e85-ec75-4321-8854-ed7eb611f61d_rg-demo101_demo101_100_Inbound",
-              "description": "",
-              "priority": 100,
-              "direction": "Inbound",
-              "access": "Deny",
-              "protocol": "Tcp",
-              "source_port_range": "*",
-              "source_port_ranges": [],
-              "destination_port_range": "22",
-              "destination_port_ranges": [],
-              "source_address_prefix": "10.0.0.1",
-              "source_address_prefixes": [],
-              "destination_address_prefix": "10.0.0.0/8",
-              "destination_address_prefixes": [],
-              "destination_application_security_group_ids": [],
-              "source_application_security_group_ids": []
-            },
-            {
-              "name": "f4ad5e85-ec75-4321-8854-ed7eb611f61d_rg-demo101_demo101_102_Inbound",
-              "description": "",
-              "priority": 102,
-              "direction": "Inbound",
-              "access": "Deny",
-              "protocol": "Udp",
-              "source_port_range": "*",
-              "source_port_ranges": [],
-              "destination_port_range": "",
-              "destination_port_ranges": [
-                "53",
-                "123"
-              ],
-              "source_address_prefix": "*",
-              "source_address_prefixes": [],
-              "destination_address_prefix": "",
-              "destination_address_prefixes": [
-                "10.0.0.1",
-                "10.0.0.0/8"
-              ],
-              "destination_application_security_group_ids": [],
-              "source_application_security_group_ids": []
-            },
-            {
-              "name": "hello rule",
-              "description": "",
-              "priority": 101,
-              "direction": "Outbound",
-              "access": "Allow",
-              "protocol": "*",
-              "source_port_range": "*",
-              "source_port_ranges": [],
-              "destination_port_range": "*",
-              "destination_port_ranges": [],
-              "source_address_prefix": "*",
-              "source_address_prefixes": [],
-              "destination_address_prefix": "",
-              "destination_address_prefixes": [
-                "10.0.0.0/8",
-                "10.0.0.1"
-              ],
-              "destination_application_security_group_ids": [],
-              "source_application_security_group_ids": []
-            }
-          ]
-        }
+  "resource": {
+    "azurerm_network_security_group": {
+      "example-nsg-2": {
+        "name": "example-cpnsg2",
+        "location": "${azurerm_resource_group.example.location}",
+        "resource_group_name": "${azurerm_resource_group.example.name}",
+        "security_rule": [
+          {
+            "name": "f4ad5e85-ec75-4321-8854-ed7eb611f61d_rg-demo101_demo101_100_Inbound",
+            "description": "",
+            "priority": 100,
+            "direction": "Inbound",
+            "access": "Allow",
+            "protocol": "Tcp",
+            "source_port_range": "*",
+            "source_port_ranges": [],
+            "destination_port_range": "22",
+            "destination_port_ranges": [],
+            "source_address_prefix": "10.2.0.1",
+            "source_address_prefixes": [],
+            "destination_address_prefix": "10.0.0.0/16",
+            "destination_address_prefixes": [],
+            "destination_application_security_group_ids": [],
+            "source_application_security_group_ids": []
+          },
+          {
+            "name": "f4ad5e85-ec75-4321-8854-ed7eb611f61d_rg-demo101_demo101_102_Inbound",
+            "description": "",
+            "priority": 102,
+            "direction": "Inbound",
+            "access": "Allow",
+            "protocol": "Udp",
+            "source_port_range": "*",
+            "source_port_ranges": [],
+            "destination_port_range": "",
+            "destination_port_ranges": [
+              "53",
+              "123"
+            ],
+            "source_address_prefix": "*",
+            "source_address_prefixes": [],
+            "destination_address_prefix": "",
+            "destination_address_prefixes": [
+              "10.2.0.1",
+              "10.0.0.0/16"
+            ],
+            "destination_application_security_group_ids": [],
+            "source_application_security_group_ids": []
+          },
+          {
+            "name": "hello-rule",
+            "description": "",
+            "priority": 101,
+            "direction": "Outbound",
+            "access": "Allow",
+            "protocol": "*",
+            "source_port_range": "*",
+            "source_port_ranges": [],
+            "destination_port_range": "*",
+            "destination_port_ranges": [],
+            "source_address_prefix": "*",
+            "source_address_prefixes": [],
+            "destination_address_prefix": "",
+            "destination_address_prefixes": [
+              "10.0.0.0/16",
+              "10.2.0.1"
+            ],
+            "destination_application_security_group_ids": [],
+            "source_application_security_group_ids": []
+          }
+        ]
       }
     }
   }
+}
