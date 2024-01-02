@@ -53,12 +53,63 @@ async function main() {
   //console.log(services);
 
   const flatRulebase = rulebase.getFlatRules();
+
+  const nsgRules = [];
+
   for (const rule of flatRulebase) {
     if (!rule.enabled) continue;
     //console.log(rule.enabled, rule.uid, rule.name, rule.type, resolveRuleLocationInNsg(rule, rulebase));
 
     const ruleData = rulebase.getRuleNsgData(rule.uid);
-    console.log(ruleData);
+    // console.log(ruleData);
+    nsgRules.push(ruleData);
+  }
+  const nsgRulesFlat = nsgRules.flat();
+  //console.log(nsgRulesFlat);
+  const nsgRulesGroupByTarget = Object.groupBy(
+    nsgRulesFlat,
+    (rule) => `${rule.subId}/${rule.rgName}/${rule.nsgName}`,
+  );
+  const groupData = Object.entries(nsgRulesGroupByTarget);
+  //console.log(groupData);
+
+  for (const [target, rules] of groupData) {
+    console.error(target);
+    const ruleEntries = rules.map((rule) => {
+        // console.log(rule.destination_port_range, rule.destination_port_ranges);
+      return {
+        "name": rule.name,
+        "description": "",
+        "priority": rule.priority,
+        "direction": rule.direction,
+        "access": rule.access,
+        "protocol": rule.protocol,
+        "source_port_range": "*",
+        "source_port_ranges": [],
+        "destination_port_range": rule.destination_port_range,
+        "destination_port_ranges": rule.destination_port_ranges,
+        "source_address_prefix": rule.source_address_prefix,
+        "source_address_prefixes": rule.source_address_prefixes,
+        "destination_address_prefix": rule.destination_address_prefix,
+        "destination_address_prefixes": rule.destination_address_prefixes,
+        "destination_application_security_group_ids": [],
+        "source_application_security_group_ids": [],
+      };
+    });
+    // console.log(JSON.stringify(ruleEntries, null, 2));
+    const nsg = {
+      "resource": {
+        "azurerm_network_security_group": {
+          "example-nsg-2": {
+            "name": "example-cpnsg2",
+            "location": "${azurerm_resource_group.example.location}",
+            "resource_group_name": "${azurerm_resource_group.example.name}",
+            "security_rule": ruleEntries,
+          },
+        },
+      },
+    };
+    console.log(JSON.stringify(nsg, null, 2));
   }
 }
 

@@ -81,11 +81,11 @@ export class AccessRulebase {
 
     //console.log('src', rule.source)
     const sourceIps = this.getRuleNsgDataSource(rule);
-    console.log("dst", sourceIps);
+    //console.log("dst", sourceIps);
 
     //console.log('dst', rule.destination)
     const destinationIps = this.getRuleNsgDataDestination(rule);
-    console.log("dst", destinationIps);
+    //console.log("dst", destinationIps);
 
     const services = rule.service.map((serviceUid: string) =>
       this.getObjectByUid(serviceUid)
@@ -117,8 +117,8 @@ export class AccessRulebase {
       Deno.exit(1);
     }
 
-    console.log("svc", rule.service, resolvedServices);
-    console.log(allProtocols, allPorts);
+    //console.log("svc", rule.service, resolvedServices);
+    //console.log(allProtocols, allPorts);
     //console.log('rule', rule)
 
     const ruleData = [];
@@ -148,12 +148,12 @@ export class AccessRulebase {
       let source_port_range = "*";
       let source_port_ranges = [];
 
-      let destination_port_range = allPorts.length === 1 ? allPorts[0] : null;
-      let destination_port_ranges = allPorts.length > 1 ? allPorts : null;
+      let destination_port_range = allPorts.length === 1 ? allPorts[0] : "";
+      let destination_port_ranges = allPorts.length > 1 ? allPorts : [];
 
       const nsgRuleName = rule.comments
         ? rule.comments
-        : `${installTarget.subId}-${installTarget.rgName}-${installTarget.nsgName}`;
+        : `${installTarget.subId}_${installTarget.rgName}_${installTarget.nsgName}_${rule.name}`;
       //console.log(rule)
 
       ruleData.push({
@@ -162,6 +162,8 @@ export class AccessRulebase {
         source_address_prefixes,
         destination_address_prefix,
         destination_address_prefixes,
+        destination_port_range,
+        destination_port_ranges,
         protocol: allProtocols[0],
         name: nsgRuleName,
         ...installTarget,

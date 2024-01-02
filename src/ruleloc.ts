@@ -51,7 +51,7 @@ function resolveRuleLocationInNsg(rule, rulebase) {
   for (const installOnObj of installOn) {
     const obj = rulebase.getObjectByUid(installOnObj);
     if (isNsgInstallTarget(obj)) {
-      console.log("installOn", obj.name, obj.type);
+      //console.log("installOn", obj.name, obj.type);
 
       const members = obj["members"];
       const rgName = getInstallTargetData(members, "rg_");
