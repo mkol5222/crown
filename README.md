@@ -4,12 +4,15 @@ micro-segmentation rulesets managed from Check Point SmartConsole
 
 ### Description
 
-Edit policy in Check Point SmartConsole, enforce as Azure NSGs or Kubernetes Pod Network Policies.
+Edit policy in Check Point SmartConsole, enforce as Azure NSGs or Kubernetes Pod
+Network Policies.
 
 ### Requirements
 
-- Deno - JavaScript/TypeScript runtime - [install](https://docs.deno.com/runtime/manual/getting_started/installation)
-- Azure Service Principal - [create](https://gist.github.com/mkol5222/2e48e283c96fd6958583b4c828e09624)
+- Deno - JavaScript/TypeScript runtime -
+  [install](https://docs.deno.com/runtime/manual/getting_started/installation)
+- Azure Service Principal -
+  [create](https://gist.github.com/mkol5222/2e48e283c96fd6958583b4c828e09624)
 
 ### Setup
 

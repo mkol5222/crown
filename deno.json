@@ -1,5 +1,5 @@
 {
-    "tasks": {
-      "start": "deno run --allow-read --allow-net main.ts"
-    }
+  "tasks": {
+    "start": "deno run --allow-read --allow-net main.ts"
   }
+}
